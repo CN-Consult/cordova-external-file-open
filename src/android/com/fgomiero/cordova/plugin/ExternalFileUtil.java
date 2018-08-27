@@ -3,19 +3,25 @@
  */
 package com.fgomiero.cordova.plugin;
 
+import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaResourceApi;
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
+import android.os.StrictMode;
+import android.util.Log;
 
 /**
  * @author Fabio Gomiero
- * 
+ *
  */
 public class ExternalFileUtil extends CordovaPlugin {
 
@@ -38,11 +44,24 @@ public class ExternalFileUtil extends CordovaPlugin {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param url
 	 * @throws IOException
 	 */
 	private void openFile(String url) throws IOException {
+
+		if(Build.VERSION.SDK_INT>=24)
+		{ // solution found here: https://stackoverflow.com/questions/38200282/android-os-fileuriexposedexception-file-storage-emulated-0-test-txt-exposed/42437379#42437379
+			try
+			{
+				Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
+				m.invoke(null);
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
 		// Create URI
 		final CordovaResourceApi resourceApi = webView.getResourceApi();
 
