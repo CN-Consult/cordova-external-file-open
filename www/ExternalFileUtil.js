@@ -12,12 +12,18 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 window.ExternalFileUtil = {
-    
-    openWith: function ( path, uti, options, success, fail) {
-        if(options == undefined)
-            return cordova.exec(success, fail, "ExternalFileUtil", "openWith", [path, uti]);
-        return cordova.exec(success, fail, "ExternalFileUtil", "openWith", [path, uti, options]);
-    }  
+
+	openWith: function ( path, uti, options, success, fail) {
+		if (device && device.platform=="iOS")
+		{ //iOS (PDF viewer) does not like file:// urls because it uses low-level methods like open() to load it.
+			var filePath=path.replace("file://","");
+		}
+		else var filePath=path;
+
+		if(options == undefined)
+			return cordova.exec(success, fail, "ExternalFileUtil", "openWith", [filePath, uti]);
+		return cordova.exec(success, fail, "ExternalFileUtil", "openWith", [filePath, uti, options]);
+	}
 };
 
 module.exports = ExternalFileUtil;
