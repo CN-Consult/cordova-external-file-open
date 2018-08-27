@@ -1,0 +1,37 @@
+{
+  "name": "com.fgomiero.cordova.externafileutil",
+  "version": "0.0.5",
+  "description": "Plugin for opening files with external apps",
+  "cordova": {
+    "id": "com.fgomiero.cordova.externafileutil",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CN-Consult/cordova-external-file-open.git"
+  },
+  "keywords": [
+    "cordova",
+    "open",
+    "file",
+    "external",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "Fabio Gomiero",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/CN-Consult/cordova-external-file-open/issues"
+  },
+  "homepage": "https://github.com/CN-Consult/cordova-external-file-open#readme"
+}
